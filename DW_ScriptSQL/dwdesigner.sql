@@ -1,5 +1,14 @@
 
+-- ## Criação de Script automática, usando a ferramenta de Designer SQL_Power_Architect ##
+-- ## O padrão de blocos de script se repete, então para facilitar, irei documentar um bloco para que possa servir de 
+-- base de conhecimento para entender todo o conteúdo.
+-- ## Após o entendimento do bloco de criação das tabelas, vá para a linha 358 e entenda a criação dos relacionamentos entre as tabelas
+
+-- Criando a Sequence no banco de dados para ser a chave Artifical autoincremental
+
 CREATE SEQUENCE public.snow_flake_operador_cartao_sk_operador_cartao_seq;
+
+-- Criando a tabela/dimensão_snowflake Operador_Cartão_Credito
 
 CREATE TABLE public.SNOW_FLAKE_OPERADOR_CARTAO (
                 SK_OPERADOR_CARTAO INTEGER NOT NULL DEFAULT nextval('public.snow_flake_operador_cartao_sk_operador_cartao_seq'),
@@ -12,13 +21,18 @@ CREATE TABLE public.SNOW_FLAKE_OPERADOR_CARTAO (
                 TX_DESCONTO_CART_CRED_APRAZO REAL NOT NULL,
                 CONSTRAINT snow_flake_operador_cartao_pk PRIMARY KEY (SK_OPERADOR_CARTAO)
 );
+
+/* Comentários que servirão como Metadados dos dados inseridos
+
 COMMENT ON COLUMN public.SNOW_FLAKE_OPERADOR_CARTAO.NK_SNOWFLAKE_OPERADOR_CARTAO IS 'É o código da adquirente processa as vendas em cartão de Cred./Deb.';
 COMMENT ON COLUMN public.SNOW_FLAKE_OPERADOR_CARTAO.NM_SNOWFLAKE_OPERADOR IS 'É o nome da adquirente processa as vendas em cartão de Cred./Deb.';
 COMMENT ON COLUMN public.SNOW_FLAKE_OPERADOR_CARTAO.NM_BANDEIRA_CARTAO IS 'É o nome da bandeira do cartao. EX; VISA, MASTERCARD, etc.';
 COMMENT ON COLUMN public.SNOW_FLAKE_OPERADOR_CARTAO.TX_DESCONTO_CART_DEBITO IS 'É a taxa cobrada pela operadora/Adquirente para oferecer o serviço. (1 dia)';
 COMMENT ON COLUMN public.SNOW_FLAKE_OPERADOR_CARTAO.TX_DESCONTO_CART_CRED_AVSITA IS 'É a taxa que a cobra p/ processa as vendas em cartão de Cred. Rotativo (30 dias)';
 COMMENT ON COLUMN public.SNOW_FLAKE_OPERADOR_CARTAO.TX_DESCONTO_CART_CRED_APRAZO IS 'É a taxa que a cobra p/ processa as vendas em cartão de Cred. Cred com 2 parcelas ou mais.';
+*/
 
+-- Alteração da Sequence criada
 
 ALTER SEQUENCE public.snow_flake_operador_cartao_sk_operador_cartao_seq OWNED BY public.SNOW_FLAKE_OPERADOR_CARTAO.SK_OPERADOR_CARTAO;
 
@@ -165,9 +179,7 @@ CREATE TABLE public.FT_VENDAS_NAO_REALIZADAS (
                 QTDE_ITENS INTEGER NOT NULL,
                 DT_CARGA TIMESTAMP
 );
-COMMENT ON COLUMN public.FT_VENDAS_NAO_REALIZADAS.SK_DATA IS 'Chave Artificial
-Sequence
-Não reutilizar';
+COMMENT ON COLUMN public.FT_VENDAS_NAO_REALIZADAS.SK_DATA IS 'Chave Artificial Sequence Não reutilizar';
 COMMENT ON COLUMN public.FT_VENDAS_NAO_REALIZADAS.SK_META_VENDA IS 'Chave Artifical auto incremental';
 COMMENT ON COLUMN public.FT_VENDAS_NAO_REALIZADAS.SK_CONCORRENTE IS 'Chave artificial AutoIncrement';
 COMMENT ON COLUMN public.FT_VENDAS_NAO_REALIZADAS.VL_VENDA_NAO_REALIZADA IS 'É o valor interno do Produto unitário ou do concorrente.';
@@ -223,9 +235,8 @@ CREATE TABLE public.DIM_PRODUTO (
 COMMENT ON COLUMN public.DIM_PRODUTO.SK_PRODUTO IS 'Chave Artificial
 Sequence
 Não reutilizar';
-COMMENT ON COLUMN public.DIM_PRODUTO.NK_PRODUTO IS 'Código do produto no legado
-também alguns casos pode está como SKU';
-COMMENT ON COLUMN public.DIM_PRODUTO.CD_MARCA IS 'Código da marca do Produto.
+COMMENT ON COLUMN public.DIM_PRODUTO.NK_PRODUTO IS 'Código do produto no legado também alguns casos pode está como SKU';
+COMMENT ON COLUMN public.DIM_PRODUTO.CD_MARCA IS 'Código da marca do Produto. 
 OBS: Nem todo produto possui uma Marca associada, pois não é obrigatório para gravação, ou seja, não é garantia de ter o dado no Legado (ERP).';
 COMMENT ON COLUMN public.DIM_PRODUTO.DT_CADASTRO IS 'Data de registro do produto no sistema';
 COMMENT ON COLUMN public.DIM_PRODUTO.PRECO_UNI_CUSTO IS 'É o preço de custo do produto.';
@@ -344,6 +355,7 @@ COMMENT ON COLUMN public.FT_VENDA.VL_VENDA_A_VISTA_CART_DEB IS 'Valor da Venda p
 COMMENT ON COLUMN public.FT_VENDA.VL_VENDA_A_VISTA_CART_CRED IS 'Valor da Venda pago A vista no Cartão de Credito';
 COMMENT ON COLUMN public.FT_VENDA.VL_VENDA_A_PRAZO_CART_CRED IS 'Valor da Venda pago A Prazo no Cartão de Credito';
 
+-- Abaixo está a inclusão de chaves SK nas Tabelas FATO
 
 ALTER TABLE public.DIM_FORMA_PGTO_CLIENTE ADD CONSTRAINT snow_flake_operador_cartao_dim_forma_pgto_cliente_fk
 FOREIGN KEY (SK_OPERADOR_CARTAO)
