@@ -1,3 +1,5 @@
+-- Registro Default na Tabela DIM_CLIENTE para que PDi execute a carga sem problemas.
+
 insert into dim_meta 
 	(
 	sk_meta_venda,
@@ -16,11 +18,11 @@ insert into dim_meta
 		 0, -- sk_meta_venda (registro default no pdi)
 		-1, -- nk_meta,
 		-1,
-		--'***Não Identificado***',            -- nm_cliente
-		--'*** não identificado ***',       -- email cliente
-		--'*** não identificado ***',        -- sexo_cliente
-		--'*** não identificado ***',       -- cidade_cliente
-		--'*** não identificado ***',       -- uf_cliente
+		--'***Nï¿½o Identificado***',            -- nm_cliente
+		--'*** nï¿½o identificado ***',       -- email cliente
+		--'*** nï¿½o identificado ***',        -- sexo_cliente
+		--'*** nï¿½o identificado ***',       -- cidade_cliente
+		--'*** nï¿½o identificado ***',       -- uf_cliente
 		-1, -- etl_versao
 		'01/01/1900 23:59:59',             -- etl_dt_inicio
 		'01/01/9999 23:59:59',          -- etl_dt_final
