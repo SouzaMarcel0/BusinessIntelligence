@@ -1,3 +1,6 @@
+
+-- -- Registro Default na Tabela DIM_FORMA_PGTO para que PDi execute a carga sem problemas.
+
 insert into dim_forma_pgto
 	(sk_forma_pgto, 
 	nk_forma_pgto, 
@@ -7,8 +10,8 @@ insert into dim_forma_pgto
 	etl_dt_fim)
 	select
 		0, -- sk_forma_pgto (registro default no pdi)
-		'*** n„o identificado ***', 
-		'*** n„o identificado ***', 
+		'*** n√£o identificado ***', 
+		'*** n√£o identificado ***', 
 		-1, -- etl_nr_versao
 		'01/01/1900 23:59:59', -- etl_dt_inicio
 		'01/01/9999 23:59:59' -- etl_dt_final
