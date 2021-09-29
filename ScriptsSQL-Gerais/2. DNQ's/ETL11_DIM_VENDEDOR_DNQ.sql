@@ -1,3 +1,6 @@
+
+-- Registro Default na Tabela DIM_VENDEDOR para que PDi execute a carga sem problemas.
+
 insert into dim_vendedor
 	(sk_vendedor, 
 	nk_vendedor, 
@@ -9,10 +12,10 @@ insert into dim_vendedor
 	etl_dt_fim)
 	select
 		0, -- sk_produto (registro default no pdi)
-		'*** n„o identificado ***', 
-		'*** n„o identificado ***', 
-		'*** n„o identificado ***', 
-		'*** n„o identificado ***', 
+		'*** n√£o identificado ***', 
+		'*** n√£o identificado ***', 
+		'*** n√£o identificado ***', 
+		'*** n√£o identificado ***', 
 		-1, -- etl_nr_versao
 		'01/01/1900 23:59:59', -- etl_dt_inicio
 		'01/01/9999 23:59:59' -- etl_dt_final
