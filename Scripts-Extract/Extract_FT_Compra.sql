@@ -1,5 +1,5 @@
 
---- Extraindo dados de Fornecedor da Fonte/Source
+--- Extraindo dados de FATO_Compra da Fonte/Source
 --- Fonte: Banco de dados Firebird
 
 SELECT 
