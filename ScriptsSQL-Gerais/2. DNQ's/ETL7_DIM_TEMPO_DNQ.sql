@@ -1,3 +1,11 @@
+-- Criação da Tabela de TEMPO/DATA que deve ser carregada uma única vez.
+-- OBS1: Esse script foi criado prevendo que é necessário ter o REGISTRO DEFAULT do PDI para que possa ser inserida a carga de dados
+-- por isso também é importante saber qual será o GRÃO da DIMENSAO TEMPO ou outras opções de data especiais para aumentar ou
+-- diminuir a necessidade de incluir no INSERT INTO DIM_DATA.
+-- OBS2: Esse script se aplica ao banco de dados Postgres, então se houver necessidade de adaptar para SQL_SERVER, observar 
+-- as mensagens de erros apresentadas ou se você já souber observar as diferenças, basta adaptar o código.
+
+
 insert into dim_data
 
 	(sk_data, 
