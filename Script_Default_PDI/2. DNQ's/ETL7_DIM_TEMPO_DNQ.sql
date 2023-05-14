@@ -55,7 +55,7 @@ insert into dim_data
 		to_char(datum, 'yyyy/"T"Q') as nr_ano_trimestre
 		--to_char(datum, 'yyyy/mm') as nr_ano_nr_mes,
 		--to_char(datum, 'iyyy/IW') as nr_ano_nr_semana ,
-		/*case when extract(isodow from datum) in (6, 7) then 'Fim de Semana' else 'Dia de Semana' end as flag_tipo_dia_semana,
+		case when extract(isodow from datum) in (6, 7) then 'Fim de Semana' else 'Dia de Semana' end as flag_tipo_dia_semana,
 	--feriados fixos
 	        case when to_char(datum, 'mmdd') in ('0101', '1225', '1115', '1102', '1012', '0907', '0611', '0501', '0421', '0410', '0225', '0224')
 	        then 'Feriado' else 'Não Feriado' end
@@ -66,7 +66,7 @@ insert into dim_data
 		     when to_char(datum, 'mmdd') > '1225' or to_char(datum, 'mmdd') <= '0106' then 'Temporada de Verão'
 			else 'Normal' end
 			as periodo_negocio,	
-		(datum + (1 - extract(day from datum))::integer + '1 month'::interval)::date - '1 day'::interval as ultimo_dia_mes*/	
+		(datum + (1 - extract(day from datum))::integer + '1 month'::interval)::date - '1 day'::interval as ultimo_dia_mes	
 	from (
 		-- data inicial da carga 
 		select '2017-01-01'::date + sequence.day as datum
