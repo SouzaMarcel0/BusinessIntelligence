@@ -6,6 +6,8 @@
 
 -- Criando a Sequence no banco de dados para ser a chave Artifical autoincremental
 
+--Foi criado tambem para o projeto apa_bi
+
 CREATE SEQUENCE public.snow_flake_operador_cartao_sk_operador_cartao_seq;
 
 -- Criando a tabela/dimensão_snowflake Operador_Cartão_Credito
